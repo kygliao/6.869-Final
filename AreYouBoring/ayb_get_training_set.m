@@ -10,6 +10,7 @@ im = imread('10001.jpg');
 %boxes = imgdetect(im, model, -0.5);
 %disp(boxes);
 [ds, ~] = process(im, model, -0.5);
+%disp(ds);
 %showboxes(im, ds);
 % TODO: get the boxes from process
 sub_images = ds; % this should be the set of detection bounding boxes after clipping
@@ -30,14 +31,16 @@ for i = numfilters:-1:1 %for each filter
     width=x2-x1;
     height= y2-y1;
     %disp(uint8([x1 y1 width height]));
-    xmin = uint8(x1);
-    ymin = uint8(y1);
-    width = uint8(width);
-    height = uint8(height);
+    xmin = uint16(x1);
+    ymin = uint16(y1);
+    width = uint16(width+1);
+    height = uint16(height+1);
     %disp([xmin ymin width height]);
     boxesInfo=[xmin ymin width height];
+    %disp(ds-boxesInfo);
     for j = 1:size(ds, 1)
     %I2 = imcrop(im, [x1 y1 width height]);
+        disp(boxesInfo(j,:));
         I2 = imcrop(im,boxesInfo(j,:));
     % TODO: save the im into a training set folder
     % need to test this function
