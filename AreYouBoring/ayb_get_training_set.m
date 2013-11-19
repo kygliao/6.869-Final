@@ -1,11 +1,17 @@
-% kai_train 
+% get_training_set 
 % Training the data
 
 load VOC2010/person_final.mat;
-im = imread('10001.jpg');
+im = imread('000061.jpg');
 disp(size(im));
+disp(model);
+% TODO: I want to see whether these actually give bounding boxes. but
+% imgdetect is not functioning properly at the moment and I'm not sure why.
+boxes = imgdetect(im, model, -0.5);
+disp(boxes);
+keyboard;
 [ds, bs] = process(im, model, -0.5);
-% showboxes(im, bbox);
+showboxes(im, [ds,bs]);
 % TODO: get the boxes from process
 sub_images = ds % this should be the set of detection bounding boxes after clipping
 % in ds, each row is a box represented by coordinates [x1 x2 y1 y2]
