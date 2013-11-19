@@ -2,32 +2,47 @@
 % Training the data
 
 load VOC2010/person_final.mat;
-im = imread('000061.jpg');
-disp(size(im));
-disp(model);
+im = imread('10001.jpg');
+%disp(size(im));
+%disp(model);
 % TODO: I want to see whether these actually give bounding boxes. but
 % imgdetect is not functioning properly at the moment and I'm not sure why.
-boxes = imgdetect(im, model, -0.5);
-disp(boxes);
-keyboard;
-[ds, bs] = process(im, model, -0.5);
-showboxes(im, [ds,bs]);
+%boxes = imgdetect(im, model, -0.5);
+%disp(boxes);
+[ds, ~] = process(im, model, -0.5);
+%showboxes(im, ds);
 % TODO: get the boxes from process
-sub_images = ds % this should be the set of detection bounding boxes after clipping
+sub_images = ds; % this should be the set of detection bounding boxes after clipping
 % in ds, each row is a box represented by coordinates [x1 x2 y1 y2]
-for i = 1:size(sub_images, 1) %for each box in the set of sub_images
+numfilters = floor(size(ds, 2)/4);
+for i = numfilters:-1:1 %for each filter
     % TODO: take the bounding box and extract the image from im
-    xmin = min(sub_images(i,1), sub_images(i,2));
-    ymin = min(sub_images(i,3), sub_images(i,4));
-    width = abs(sub_images(i,2) - sub_images(i,1)) + 1;
-    height = abs(sub_images(i,4) - sub_images(i,3)) + 1;
-    disp(i);
-    disp(uint8([xmin ymin width height]));
-    I2 = imcrop(im, uint8([xmin ymin width height]));
-    
+    %xmin = min(sub_images(i,1), sub_images(i,2));
+    %ymin = min(sub_images(i,3), sub_images(i,4));
+    %width = abs(sub_images(i,2) - sub_images(i,1)) + 1;
+    %height = abs(sub_images(i,4) - sub_images(i,3)) + 1;
+    x1 = ds(:,1+(i-1)*4);
+    y1 = ds(:,2+(i-1)*4);
+    x2 = ds(:,3+(i-1)*4);
+    y2 = ds(:,4+(i-1)*4);
+    %disp(i);
+    %disp(y2);
+    width=x2-x1;
+    height= y2-y1;
+    %disp(uint8([x1 y1 width height]));
+    xmin = uint8(x1);
+    ymin = uint8(y1);
+    width = uint8(width);
+    height = uint8(height);
+    %disp([xmin ymin width height]);
+    boxesInfo=[xmin ymin width height];
+    for j = 1:size(ds, 1)
+    %I2 = imcrop(im, [x1 y1 width height]);
+        I2 = imcrop(im,boxesInfo(j,:));
     % TODO: save the im into a training set folder
     % need to test this function
-    filename = strcat('ayb_training_set/train', num2str(i));
-    filename = strcat(filename, '.jpg');
-    imwrite(I2, filename, 'jpg');
+        filename = strcat('ayb_training_set/train', num2str(j));
+        filename = strcat(filename, '.jpg');
+        imwrite(I2, filename, 'jpg');
+    end
 end
