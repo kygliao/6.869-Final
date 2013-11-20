@@ -1,9 +1,9 @@
 % get_training_set 
 % Training the data
 
-load VOC2010/person_final.mat;
+%load VOC2010/person_final.mat;
 %load('annotation_using_a_computer.mat');
-im = imread('ayb_classroom_images/13.jpg');
+im = imread('ayb_classroom_images/1.jpg');
 
 %disp(size(im));
 %disp(model);
@@ -46,7 +46,7 @@ for i = numfilters:-1:1 %for each filter
         I2 = imcrop(im,boxesInfo(j,:));
     % TODO: save the im into a training set folder
     % need to test this function
-        filename = strcat('ayb_training_set/train13_', num2str(j));
+        filename = strcat('ayb_training_set/train1_', num2str(j));
         filename = strcat(filename, '.jpg');
         imwrite(I2, filename, 'jpg');
     end
