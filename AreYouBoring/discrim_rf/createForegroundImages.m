@@ -1,12 +1,13 @@
 % change this path if you install the VOC code elsewhere
-%addpath([cd '/VOCcode']);
+addpath([cd '/VOCcode']);
 %addpath([cd '/vision/u/kakooyang/randomforest/llc_extraction/VOCdevkit/VOCcode']);
-addpath(['/vision/u/kakooyang/randomforest/llc_extraction/VOCdevkit/VOCcode']);
+%addpath(['/vision/u/kakooyang/randomforest/llc_extraction/VOCdevkit/VOCcode']);
 % initialize VOC options
 VOCinit;
 fileID = fopen('train_fg.txt','w');
 %input_folder = 'VOC2011/JPEGImages/';
-input_folder = '/vision/u/kakooyang/randomforest/llc_extraction/VOC2011ori/TrainVal/VOCdevkit/VOC2011/JPEGImages/';
+input_folder = 'JPEGImages/';
+%input_folder = '/vision/u/kakooyang/randomforest/llc_extraction/VOC2011ori/TrainVal/VOCdevkit/VOC2011/JPEGImages/';
 %output_folder = 'dataset/';
 output_folder = 'dataset_fg/';
 input_folder
@@ -41,6 +42,7 @@ for i=startIdx:endIdx
     img_wid = rec.imgsize(1);
     img_hgt = rec.imgsize(2);
     img = imread(imageFName);
+    
     
     for j=1:length(rec.objects)
         %outFName = [output_folder ids{i} '_' num2str(j) '.jpg'];

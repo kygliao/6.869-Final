@@ -28,11 +28,17 @@ config.parallel.cores = 8;
 config.flipSuffix = {'', '_f'};
 config.imageSets = {'tr', 'te'};
 
-trainingpath = 'randomforest/llc_extraction/VOC2011ori/TrainVal/VOCdevkit/VOC2011/ImageSets/Action/trainval.txt'; % the list of training data(background)
+%trainingpath = 'randomforest/llc_extraction/VOC2011ori/TrainVal/VOCdevkit/VOC2011/ImageSets/Action/trainval.txt'; % the list of training data(background)
+%savefile = 'VOCActionDataset.mat'; % file name of the dataset
+%hi = 'randomforest/images/JPEGImages'; % path where training and test images exist
+%name = 'VOC Action Classification'; % name of dataset
+%testpath = 'randomforest/llc_extraction/VOC2011ori/Test/VOCdevkit/VOC2011/ImageSets/Action/test.txt';% the list of test data(background)
+
+trainingpath = 'randomforest/llc_extraction/Action/trainval.txt'; % the list of training data(background)
 savefile = 'VOCActionDataset.mat'; % file name of the dataset
 hi = 'randomforest/images/JPEGImages'; % path where training and test images exist
 name = 'VOC Action Classification'; % name of dataset
-testpath = 'randomforest/llc_extraction/VOC2011ori/Test/VOCdevkit/VOC2011/ImageSets/Action/test.txt';% the list of test data(background)
+testpath = 'randomforest/llc_extraction/Action/test.txt';% the list of test data(background)
 
 config.outputFolder = 'savefeature_bg';% the output path to save the feature extracton result for background feature
 
@@ -47,12 +53,17 @@ config_fg.outputFolder = 'savefeature_fg'; % the output path to save the feature
 
 
 % generate input .mat file
+%trainingpath_fg = 'randomforest/llc_extraction/train_fg.txt';% the list of training data(foreground)
+%savefile_fg = 'VOCActionDatasetfg.mat';% file name of the dataset
+%hi_fg ='randomforest/llc_extraction/dataset_fg';% path where training and test images exist
+%name_fg ='VOC Action Classification fg';% name of dataset 
+%testpath_fg ='randomforest/llc_extraction/test_fg.txt';% the list of test data(foreground)
+
 trainingpath_fg = 'randomforest/llc_extraction/train_fg.txt';% the list of training data(foreground)
 savefile_fg = 'VOCActionDatasetfg.mat';% file name of the dataset
 hi_fg ='randomforest/llc_extraction/dataset_fg';% path where training and test images exist
 name_fg ='VOC Action Classification fg';% name of dataset 
 testpath_fg ='randomforest/llc_extraction/test_fg.txt';% the list of test data(foreground)
-
 
 %foreground parameter configuration
 
@@ -88,11 +99,13 @@ trainingfilepath = [config.outputFolder '/' name '/tr.mat' ];
 trainingfileflippedpath = [config.outputFolder '/' name '/tr_f.mat' ];
 trainingfilepath_fg =[config_fg.outputFolder '/' name_fg '/tr.mat' ];
 trainingfileflippedpath_fg = [config_fg.outputFolder '/' name_fg '/tr_f.mat' ];
-trainingfilegt='randomforest/llc_extraction/VOC2011ori/TrainVal/VOCdevkit/VOC2011/ImageSets/Action/'; % the path where the list of each action training data exists
+%trainingfilegt='randomforest/llc_extraction/VOC2011ori/TrainVal/VOCdevkit/VOC2011/ImageSets/Action/'; % the path where the list of each action training data exists
+trainingfilegt='randomforest/llc_extraction/Action/'; % the path where the list of each action training data exists
 
 testfilepath = [config.outputFolder '/' name '/te.mat' ];
 testfileflippedpath = [config.outputFolder '/' name '/te_f.mat' ];
 testfilepath_fg =[config_fg.outputFolder '/' name_fg '/te.mat' ];
 testfileflippedpath_fg = [config_fg.outputFolder '/' name_fg '/te_f.mat' ];
+%testfilegt='randomforest/llc_extraction/testlabels/Action/'; % the path where the list of each action test data exists
 testfilegt='randomforest/llc_extraction/testlabels/Action/'; % the path where the list of each action test data exists
 
