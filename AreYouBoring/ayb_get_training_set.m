@@ -1,8 +1,10 @@
 % get_training_set 
 % Training the data
 
-load VOC2010/person_final.mat;
-im = imread('10001.jpg');
+%load VOC2010/person_final.mat;
+load('annotation_using_a_computer.mat');
+im = imread('ayb_training_set/train14.jpg');
+
 %disp(size(im));
 %disp(model);
 % TODO: I want to see whether these actually give bounding boxes. but
