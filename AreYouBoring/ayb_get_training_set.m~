@@ -1,9 +1,16 @@
 % get_training_set 
 % Training the data
+LARGE_CLASSROOM_THRESHOLD = 20;
+load VOC2010/person_final.mat;
+for q = 1:13
+    
 
-%load VOC2010/person_final.mat;
+IsLargeClassroom=0;
+
 %load('annotation_using_a_computer.mat');
-im = imread('ayb_classroom_images/1.jpg');
+file = strcat('ayb_classroom_images/', num2str(q));
+file = strcat(file,'.jpg');
+im = imread(file);
 
 %disp(size(im));
 %disp(model);
@@ -13,7 +20,7 @@ im = imread('ayb_classroom_images/1.jpg');
 %disp(boxes);
 [ds, ~] = process(im, model, -0.5);
 %disp(ds);
-%showboxes(im, ds);
+showboxes(im, ds);
 % TODO: get the boxes from process
 sub_images = ds; % this should be the set of detection bounding boxes after clipping
 % in ds, each row is a box represented by coordinates [x1 x2 y1 y2]
@@ -46,8 +53,16 @@ for i = numfilters:-1:1 %for each filter
         I2 = imcrop(im,boxesInfo(j,:));
     % TODO: save the im into a training set folder
     % need to test this function
-        filename = strcat('ayb_training_set/train1_', num2str(j));
+        filename = strcat('ayb_training_set/train',num2str(q));
+        filename = strcat(filename,'_', num2str(j));
         filename = strcat(filename, '.jpg');
         imwrite(I2, filename, 'jpg');
     end
+    if size(ds, 1)>LARGE_CLASSROOM_THRESHOLD
+        IsLargeClassroom=1;
+        
+    end
+      display(q);
+      display(
+end
 end
