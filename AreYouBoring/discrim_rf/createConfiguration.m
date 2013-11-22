@@ -34,11 +34,11 @@ config.imageSets = {'tr', 'te'};
 %name = 'VOC Action Classification'; % name of dataset
 %testpath = 'randomforest/llc_extraction/VOC2011ori/Test/VOCdevkit/VOC2011/ImageSets/Action/test.txt';% the list of test data(background)
 
-trainingpath = 'randomforest/llc_extraction/Action/trainval.txt'; % the list of training data(background)
+trainingpath = 'randomforest/llc_extraction/VOC2011/ImageSets/Action/trainval.txt'; % the list of training data(background)
 savefile = 'VOCActionDataset.mat'; % file name of the dataset
 hi = 'randomforest/images/JPEGImages'; % path where training and test images exist
 name = 'VOC Action Classification'; % name of dataset
-testpath = 'randomforest/llc_extraction/Action/test.txt';% the list of test data(background)
+testpath = 'randomforest/llc_extraction/VOC2011/ImageSets/Action/test.txt';% the list of test data(background)
 
 config.outputFolder = 'savefeature_bg';% the output path to save the feature extracton result for background feature
 
@@ -100,7 +100,7 @@ trainingfileflippedpath = [config.outputFolder '/' name '/tr_f.mat' ];
 trainingfilepath_fg =[config_fg.outputFolder '/' name_fg '/tr.mat' ];
 trainingfileflippedpath_fg = [config_fg.outputFolder '/' name_fg '/tr_f.mat' ];
 %trainingfilegt='randomforest/llc_extraction/VOC2011ori/TrainVal/VOCdevkit/VOC2011/ImageSets/Action/'; % the path where the list of each action training data exists
-trainingfilegt='randomforest/llc_extraction/Action/'; % the path where the list of each action training data exists
+trainingfilegt='randomforest/llc_extraction/VOC2011/ImageSets/Action/'; % the path where the list of each action training data exists
 
 testfilepath = [config.outputFolder '/' name '/te.mat' ];
 testfileflippedpath = [config.outputFolder '/' name '/te_f.mat' ];
