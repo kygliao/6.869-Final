@@ -2,7 +2,7 @@
 % Training the data
 LARGE_CLASSROOM_THRESHOLD = 20;
 load VOC2010/person_final.mat;
-for q = 1:13
+for q = 14:75
     
 
     IsLargeClassroom=0;
