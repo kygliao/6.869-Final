@@ -1,0 +1,31 @@
+last updated : Nov 3, 2009
+
+This file contains code for encoding and learning piecewise
+linear models trained using stochastic gradient descent described
+in the paper:
+
+Max-Margin Additive Classifiers for Detection, 
+Subhransu Maji and Alexander C. Berg, ICCV 2009, Kyoto.
+
+run the fake_example.m 
+The code generates a simple training set where pos examples are points
+inside a circle and negative are outside. Additive classifiers are trained
+using PWLSGD by encoding the data into 20 dimensions to achieve near perfect
+seperation.
+
+you may also train phi2 encoded linear models 
+by first downloading LIBLINEAR
+http://www.csie.ntu.edu.tw/~cjlin/liblinear/
+
+and adding the path to train/predict functions
+(set the useLIBLINEAR flag to 1 in demo.m)
+
+encode_data.m : contains code to do the encoding.
+--
+Subhransu Maji 
+www.cs.berkeley.edu/~smaji
+
+Alexander C. Berg, 
+www.cs.berkeley.edu/~aberg
+
+
