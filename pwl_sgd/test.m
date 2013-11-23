@@ -15,10 +15,27 @@ npts   = 5000;
 %% If the person is paying attention, put the image in one folder
 %% else, put it in the other.
 %% This will determine if the data point is a 1 or -1.
+
+% How to train TODO
+% 1) take in the image, and extract the features
+% 2) pass the features into the algorithm to be trained
+% X = features at nth point (some matrix)
+% We probably don't need p1 and p2 since we don't need those for T
+% TODO: call code that extracts features
+% 
 X      = mvnrnd(mu1,sigma1,npts)';
 p1     = mvnpdf(X',mu1,sigma1);
 p2     = mvnpdf(X',mu1,sigma2);
 T      = zeros(1,npts);
+keyboard;
+% for loop to iterate through files
+% if file is from a specific folder, assign it the corresponding number
+% TODO: syntax for using T? set position n to equal -1 or 1 T(n) = 1 or -1;
+% if check filename == pos
+%   T(n) = 1;
+% else
+%   T(n) = -1;
+% end
 T(p1 >= p2) = 1;
 T(p1 < p2) = -1;
 %% testing images
