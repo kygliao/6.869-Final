@@ -1,3 +1,6 @@
 [submodule "AreYouBoring/feature-extraction"]
 	path = AreYouBoring/feature-extraction
 	url = http://github.com/adikhosla/feature-extraction
+[submodule "feature-extraction"]
+	path = feature-extraction
+	url = git://github.com/adikhosla/feature-extraction
