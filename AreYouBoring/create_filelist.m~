@@ -1,0 +1,24 @@
+% create_filelist
+% script for creating the proper file list to train and test images
+
+atten_dir = 'attention/';
+bored_dir = 'bored/';
+
+% someone used some interesting .NET extension of MATLAB, but I don't wanna
+% go through that. there must be another way to get files...
+
+atten_files;
+bored_files;
+
+atten_dir_size = 1;
+bored_dir_size = 1;
+
+a_x = atten_dir_size/2
+test_labels = ones(1, a_x);
+test_labels(1, a_x + 1 : ) = 2;
+train_labels = test_labels; %if we decide that they should be the same
+classes = [1 2];
+
+% TODO: fill in test_list and train_list with the file paths. 
+
+save('new_filelist.mat', 'classes', 'test_labels', 'test_list', 'train_labels', 'train_list');
