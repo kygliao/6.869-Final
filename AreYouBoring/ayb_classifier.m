@@ -6,8 +6,9 @@ function [ verdict ] = ayb_classifier(  )
 addpath(genpath(pwd));
 
 % Initialize variables for calling datasets_feature function
-info = load('kai_filelist.mat'); 
-datasets = {'demo'}; 
+info = load('traininglist.mat'); 
+%info = load('kai_filelist.mat');
+datasets = {'ayb0'}; 
 train_lists = {info.train_list};
 
 feature = 'hog2x2'; % let's try gist, hog, and sift; color probably isn't a good idea
@@ -17,7 +18,9 @@ c.feature_config.(feature).dictionary_size=20;
 
 % Compute train and test features
 % we don't actually need test_labels
-test_lists = {info.test_list}; % TODO: replace this with list of images in ayb_tmp
+dir_list = dir('ayb_tmp/*.jpg');
+test_lists = {dir_list.name};
+%test_lists = {info.test_list};
 datasets_feature(datasets, train_lists, test_lists, feature, c);
 
 % TODO: fitting it all into an SVM somehow...ugh.

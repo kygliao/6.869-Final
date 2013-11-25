@@ -50,10 +50,10 @@ display(IsLargeClassroom);
 verdict = ayb_classifier();
 for i=1:size(verdict, 2)
     if verdict(1,i) == 1
-        attention = attention + 1
+        attention = attention + 1;
     else
         if verdict(1,i) == 2
-            bored = bored + 1
+            bored = bored + 1;
         end
     end
 
