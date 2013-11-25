@@ -17,6 +17,11 @@ c.feature_config.(feature).dictionary_size=20;
 % Compute train and test features
 datasets_feature(datasets, train_lists, test_lists, feature, c);
 
+% TODO: we could technically use this features in the pwl_sgd, but that
+% doesn't seem to be necessary since this code pretty much learns
+% everything. The main problem is fitting it all into an SVM somehow...ugh.
+% Trying to interpret fast-additive-svms -- we can likely adapt that code.
+
 % Load train and test features
 train_features = load_feature(datasets{1}, feature, 'train', c);
 test_features = load_feature(datasets{1}, feature, 'test', c);
@@ -53,9 +58,6 @@ end
 % Display test images and nearest neighbor from train images in Figure 2
 test_labels = info.test_labels; classes = info.classes;
 numPerClass = max(histc(test_labels, unique_labels));
-% display numPerClass
-disp('numPerClass');
-disp(numPerClass);
 h = figure(2); set(h, 'name', 'Test Images'); border = 10;
 [~, nn_idx] = min(sp_dist2(train_features, test_features));
 
